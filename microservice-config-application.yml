@@ -6,12 +6,12 @@ server:
   port: 4001
 spring:
   profiles: dev
-  applications:
+  application:
     name: microservice-config-dev
 ---
 server:
   port: 4002
 spring:
   profiles: prod
-  applications:
+  application:
     name: microservice-config-prod
