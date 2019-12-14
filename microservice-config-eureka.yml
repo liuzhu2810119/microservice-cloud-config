@@ -1,0 +1,39 @@
+﻿spring:
+  profiles:
+    active: dev
+---
+server:
+  port: 6001 #端口号
+spring:
+  profiles: dev #开发环境
+  application:
+    name: microservice-config-eureka
+eureka:
+  instance:
+    hostname: eureka6001.com  #eureka服务端实例名
+  client:
+    registerWithEureka: false # 服务注册，false表示不将自已注册到Eureka服务中
+    fetchRegistry: false # 服务发现，false表示自己不从Eureka服务中获取注册信息
+    serviceUrl:    # Eureka客户端与Eureka服务端的交互地址，集群版配置对方的地址，单机版配置自己（如果不配置则默认本机8761端口）
+      #defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone:  http://eureka6002.com:6002/eureka/
+  server:
+    enable-self-preservation: false #禁用自我保护机制
+---
+server:
+  port: 6001
+spring:
+  profiles: prod
+  application:
+    name: microservice-config-eureka
+eureka:
+  instance:
+    hostname: eureka6001.com  #eureka服务端实例名
+  client:
+    registerWithEureka: false # 服务注册，false表示不将自已注册到Eureka服务中
+    fetchRegistry: false # 服务发现，false表示自己不从Eureka服务中获取注册信息
+    serviceUrl:    # Eureka客户端与Eureka服务端的交互地址，集群版配置对方的地址，单机版配置自己（如果不配置则默认本机8761端口）
+      #defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone:  http://eureka6001.com:6001/eureka/
+  server:
+    enable-self-preservation: ture #开启自我保护机制
